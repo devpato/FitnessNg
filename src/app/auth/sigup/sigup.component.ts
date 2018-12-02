@@ -7,9 +7,12 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./sigup.component.css"]
 })
 export class SigupComponent implements OnInit {
+  maxDate = new Date();
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+  }
 
   onSubmit(form: NgForm) {
     console.log(form.value);

@@ -34,9 +34,20 @@
         ngModel
         #pwInput="ngModel"
       />
-      <mat-hint align="end">{{ pwInput.value?.length }} /6</mat-hint>
+      <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
       <mat-error>Password is Invalid</mat-error>
     </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Your Birthday"
+        [max]="maxDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
     <button type="submit" mat-raised-button color="primary">Submit</button>
   </form>
 </section>
