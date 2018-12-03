@@ -1,0 +1,10 @@
+a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+a:hover,
+a:active {
+  color: grey;
+}
