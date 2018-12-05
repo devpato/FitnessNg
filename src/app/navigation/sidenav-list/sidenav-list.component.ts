@@ -11,12 +11,12 @@ export class SidenavListComponent implements OnInit {
   @Output()
   sidebarToggle = new EventEmitter<void>();
   isAuth = false;
-  authSubscription: Subscription;
+  authSubscription$: Subscription;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authSubscription = this.authService.authChange.subscribe(authStatus => {
+    this.authSubscription$ = this.authService.authChange.subscribe(authStatus => {
       this.isAuth = authStatus;
     })
   }
@@ -26,7 +26,7 @@ export class SidenavListComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    this.authSubscription.unsubscribe();
+    this.authSubscription$.unsubscribe();
   }
 
   onLogout() {
