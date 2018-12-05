@@ -8,3 +8,7 @@ a:hover,
 a:active {
   color: grey;
 }
+
+.logout {
+  cursor: pointer;
+}
