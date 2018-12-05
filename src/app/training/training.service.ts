@@ -9,10 +9,10 @@ export class TrainingService {
 
     buildExercises(): Exercise[] {
         return this.aExcercises = [
-            { id: 'crunches', name: 'Crunches', duration: 3000, calories: 8 },
-            { id: 'touch-toes', name: 'Touch Toes', duration: 1800, calories: 15 },
-            { id: 'side-lunges', name: 'Side Lunges', duration: 3000, calories: 18 },
-            { id: 'burpees', name: 'Burpees', duration: 6000, calories: 8 }
+            { id: 'crunches', name: 'Crunches', duration: 30, calories: 8 },
+            { id: 'touch-toes', name: 'Touch Toes', duration: 180, calories: 15 },
+            { id: 'side-lunges', name: 'Side Lunges', duration: 30, calories: 18 },
+            { id: 'burpees', name: 'Burpees', duration: 60, calories: 8 }
         ]
     }
 
@@ -41,13 +41,17 @@ export class TrainingService {
                 ...this.runningExcercise,
                 date: new Date(),
                 duration: this.runningExcercise.duration * (progress / 100),
-                calories: this.runningExcercise.duration * (progress / 100),
+                calories: this.runningExcercise.calories * (progress / 100),
                 state: 'cancelled'
             }
         );
         this.runningExcercise = null;
         this.excerciseChanged$.next(null)
 
+    }
+
+    getPastExercises(): Exercise[] {
+        return this.excercises.slice();
     }
 
 
