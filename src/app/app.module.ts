@@ -16,6 +16,9 @@ import { FormsModule } from "@angular/forms";
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { StoptrainingComponent } from "./training/stoptraining/stoptraining.component";
+import { AuthService } from "./auth/auth.service";
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -38,9 +41,10 @@ import { StoptrainingComponent } from "./training/stoptraining/stoptraining.comp
     MaterialModule,
     AppRoutingModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [StoptrainingComponent]
 })
