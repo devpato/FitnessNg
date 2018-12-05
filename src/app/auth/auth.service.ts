@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core"; 3
+import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { User } from "../models/user.model";
 import { AuthData } from "../models/auth-data.model";
@@ -35,12 +35,12 @@ export class AuthService {
         this.route.navigate(['/login']);
     }
 
-    getUser() {
+    getUser(): User {
         return { ...this.user }
     }
 
-    isAuth() {
-        return this.user !== null;
+    isAuth(): Boolean {
+        return this.user != null;
     }
 
     isAuthSuccessful() {
