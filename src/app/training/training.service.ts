@@ -48,13 +48,13 @@ export class TrainingService {
     }
 
     completeExercise() {
-        this.excercises.push({ ...this.runningExcercise, date: new Date(), state: 'completed' });
+        this.addDataToDB({ ...this.runningExcercise, date: new Date(), state: 'completed' });
         this.runningExcercise = null;
         this.excerciseChanged$.next(null)
     }
 
     cancelExercise(progress: number) {
-        this.excercises.push(
+        this.addDataToDB(
             {
                 ...this.runningExcercise,
                 date: new Date(),
@@ -70,6 +70,10 @@ export class TrainingService {
 
     getPastExercises(): Exercise[] {
         return this.excercises.slice();
+    }
+
+    addDataToDB(e: Exercise) {
+        this.db.collection('finishedExercises').add(e);
     }
 
 
