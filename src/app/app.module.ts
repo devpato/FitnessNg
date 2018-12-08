@@ -19,6 +19,9 @@ import { StoptrainingComponent } from "./training/stoptraining/stoptraining.comp
 import { AuthService } from "./auth/auth.service";
 import { ReactiveFormsModule } from '@angular/forms';
 import { TrainingService } from "./training/training.service";
+import { AngularFireModule } from 'angularfire2'
+import { AngularFirestoreModule } from 'angularfire2/firestore'
+import { environment } from "src/environments/environment";
 
 
 
@@ -43,7 +46,9 @@ import { TrainingService } from "./training/training.service";
     AppRoutingModule,
     FlexLayoutModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
