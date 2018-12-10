@@ -40,6 +40,12 @@ export class TrainingService {
     }
 
     startExcercise(selectedId: string) {
+
+        //Update method Firestore
+        // this.db.doc('availableExercises/' + selectedId).update({
+        //     lastSelected: new Date()
+        // });
+
         this.runningExcercise = this.aExcercises.find(e => e.id === selectedId);
         this.excerciseChanged$.next({ ...this.runningExcercise });
     }
