@@ -9,9 +9,10 @@ import { map } from 'rxjs/operators/map';
 export class TrainingService {
     private aExcercises: Exercise[]
     private excercises: Exercise[] = [];
-    private runningExcercise: Exercise;
+    private runningExcercise: Exercise; 3
     excerciseChanged$ = new Subject<Exercise>();
     excercisesChanged$ = new Subject<Exercise[]>();
+    finishedExercises$ = new Subject<Exercise[]>();
 
     constructor(private db: AngularFirestore) { }
 
@@ -70,6 +71,12 @@ export class TrainingService {
 
     getPastExercises(): Exercise[] {
         return this.excercises.slice();
+    }
+
+    fetchCompletedOrCancelledExcercises() {
+        this.db.collection('finishedExercises').valueChanges().subscribe((exercises: Exercise[]) => {
+            this.finishedExercises$.next(exercises);
+        });
     }
 
     addDataToDB(e: Exercise) {
