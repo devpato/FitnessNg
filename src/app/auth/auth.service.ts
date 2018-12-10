@@ -4,18 +4,21 @@ import { AuthData } from "../models/auth-data.model";
 import { Subject } from 'rxjs/Subject';
 import { AngularFireAuth } from 'angularfire2/auth'
 import { TrainingService } from "../training/training.service";
+import { MatSnackBar } from '@angular/material'
 
 @Injectable()
 export class AuthService {
     private isAuthenticated = false;
     authChange = new Subject<boolean>();
 
-    constructor(private route: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService) { }
+    constructor(private route: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService, private snackbar: MatSnackBar;) { }
 
     registerUser(authData: AuthData) {
         this.afAuth.auth.createUserAndRetrieveDataWithEmailAndPassword(authData.email, authData.password).then(() => {
         }).catch(error => {
-            console.log(error);
+            this.snackbar.open(error.message, null, {
+                duration: 3000
+            })
             this.isAuthenticated = false;
         })
     }
@@ -23,7 +26,9 @@ export class AuthService {
     login(authData: AuthData) {
         this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password).then(() => {
         }).catch(error => {
-            console.log(error);
+            this.snackbar.open(error.message, null, {
+                duration: 3000
+            })
             this.isAuthenticated = false;
         })
     }
