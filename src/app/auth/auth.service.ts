@@ -20,7 +20,7 @@ export class AuthService {
 
     registerUser(authData: AuthData) {
         this.uiService.loadingStateChanged.next(true);
-        this.afAuth.auth.createUserAndRetrieveDataWithEmailAndPassword(authData.email, authData.password).then(() => {
+        this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password).then(() => {
             this.uiService.loadingStateChanged.next(false);
         }).catch(error => {
             this.snackbar.open(error.message, null, {
