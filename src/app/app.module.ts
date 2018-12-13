@@ -21,6 +21,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth'
 import { environment } from "src/environments/environment";
 import { UIService } from "./shared/ui.service";
 import { AuthModule } from "./auth/auth.module";
+import { FormsModule } from "@angular/forms";
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { AuthModule } from "./auth/auth.module";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AuthModule
+    AuthModule,
+    FormsModule
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent],
