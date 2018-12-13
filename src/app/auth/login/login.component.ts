@@ -21,10 +21,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.formBuilder();
   }
 
-  ngOnDestroy() {
-    this.loadingSubs.unsubscribe();
-  }
-
   onSubmit() {
     this.authService.login({
       email: this.loginForm.value.email,
@@ -46,4 +42,11 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: new FormControl('', { validators: [Validators.required] })
     });
   }
+
+  ngOnDestroy() {
+    if (this.loadingSubs) {
+      this.loadingSubs.unsubscribe();
+    }
+  }
+
 }

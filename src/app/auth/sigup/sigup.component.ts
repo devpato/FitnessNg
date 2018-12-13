@@ -20,10 +20,6 @@ export class SigupComponent implements OnInit, OnDestroy {
     this.setFullYear();
   }
 
-  ngOnDestroy() {
-    this.loadingSubs.unsubscribe();
-  }
-
   onSubmit(form: NgForm) {
     this.authService.registerUser({
       email: form.value.email,
@@ -39,5 +35,11 @@ export class SigupComponent implements OnInit, OnDestroy {
 
   setFullYear() {
     this.maxDate.setFullYear(this.maxDate.getFullYear() - 18);
+  }
+
+  ngOnDestroy() {
+    if (this.loadingSubs) {
+      this.loadingSubs.unsubscribe();
+    }
   }
 }

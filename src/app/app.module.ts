@@ -11,8 +11,6 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
 import { AuthService } from "./auth/auth.service";
 import { TrainingService } from "./training/training.service";
 import { AngularFireModule } from 'angularfire2'
-import { AngularFirestoreModule } from 'angularfire2/firestore'
-import { AngularFireAuthModule } from 'angularfire2/auth'
 import { environment } from "src/environments/environment";
 import { UIService } from "./shared/ui.service";
 import { AuthModule } from "./auth/auth.module";
@@ -35,8 +33,6 @@ import { TrainingModule } from "./training/training.module";
     AppRoutingModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    AngularFireAuthModule,
     AuthModule,
     FormsModule,
     TrainingModule
