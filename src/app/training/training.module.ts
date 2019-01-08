@@ -7,6 +7,7 @@ import { StoptrainingComponent } from "./stoptraining/stoptraining.component";
 import { ReactiveFormsModule } from "@angular/forms";
 import { AngularFirestoreModule } from "angularfire2/firestore";
 import { SharedModule } from "../shared/shared.module";
+import { TrainingRoutingModule } from "./training/training-routing.module";
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { SharedModule } from "../shared/shared.module";
     imports: [
         SharedModule,
         ReactiveFormsModule,
-        AngularFirestoreModule],
+        AngularFirestoreModule,
+        TrainingRoutingModule
+    ],
     providers: [],
     entryComponents: [StoptrainingComponent]
 })
