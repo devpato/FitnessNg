@@ -34,7 +34,7 @@ import { appReducer } from "./reducers/app.reducer";
     AngularFireModule.initializeApp(environment.firebase),
     AuthModule,
     AngularFirestoreModule,
-    StoreModule.forRoot({ ui: appReducer })
+    StoreModule.forRoot(appReducer)
   ],
   providers: [AuthService, TrainingService, UIService],
   bootstrap: [AppComponent],

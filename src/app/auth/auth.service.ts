@@ -6,7 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth'
 import { TrainingService } from "../training/training.service";
 import { UIService } from "../shared/ui.service";
 import { Store } from "@ngrx/store";
-import * as fromApp from '../reducers/app.reducer';
+import * as fromRoot from '../reducers/app.reducer';
 
 @Injectable()
 export class AuthService {
@@ -18,7 +18,7 @@ export class AuthService {
         private afAuth: AngularFireAuth,
         private trainingService: TrainingService,
         private uiService: UIService,
-        private store: Store<{ ui: fromApp.State }>
+        private store: Store<fromRoot.State>
     ) { }
 
     registerUser(authData: AuthData) {
