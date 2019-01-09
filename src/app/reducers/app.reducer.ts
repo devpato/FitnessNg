@@ -1,4 +1,4 @@
-interface State {
+export interface State {
     isLoading: false
 }
 const INITIAL_STATE = {
