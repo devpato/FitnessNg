@@ -2,7 +2,10 @@ import { Component, OnInit, OnDestroy } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { AuthService } from "../auth.service";
 import { UIService } from "src/app/shared/ui.service";
-import { Subscription } from 'rxjs'
+import { Subscription, Observable } from 'rxjs'
+import { map } from 'rxjs/operators';
+import { Store, select } from '@ngrx/store';
+import * as fromRoot from '../../reducers/app.reducer';
 
 @Component({
   selector: "app-sigup",
@@ -11,9 +14,13 @@ import { Subscription } from 'rxjs'
 })
 export class SigupComponent implements OnInit, OnDestroy {
   maxDate = new Date();
-  isLoading = false;
+  //isLoading$ = false;
+  isLoading$: Observable<boolean>;
   private loadingSubs: Subscription;
-  constructor(private authService: AuthService, private uiService: UIService) { }
+  constructor(
+    private authService: AuthService,
+    private uiService: UIService,
+    private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
     this.onSignup();
@@ -28,9 +35,10 @@ export class SigupComponent implements OnInit, OnDestroy {
   }
 
   onSignup() {
-    this.loadingSubs = this.uiService.loadingStateChanged.subscribe(loding => {
-      this.isLoading = loding;
-    });
+    // this.loadingSubs = this.uiService.loadingStateChanged.subscribe(loding => {
+    //   this.isLoading = loding;
+    // });
+    this.isLoading$ = this.store.pipe(select(fromRoot.getIsLoading));
   }
 
   setFullYear() {

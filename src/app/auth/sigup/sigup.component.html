@@ -8,7 +8,7 @@
     <mat-form-field hintLabel="Should be at least 6 characters long">
       <input type="password" matInput placeholder="Your Password" name="password" required minlength="6" ngModel
         #pwInput="ngModel" />
-      <mat-hint align="end">{{ pwInput.value?.length }}/6</mat-hint>
+      <mat-hint aling="end">{{ pwInput.value?.length }}/6</mat-hint>
       <mat-error>Password is Invalid</mat-error>
     </mat-form-field>
     <mat-form-field>
@@ -20,7 +20,7 @@
     <mat-checkbox ngModel name="agree" required>
       Agree to Terms and Conditions
     </mat-checkbox>
-    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid" *ngIf="!isLoading; else spinner">
+    <button type="submit" mat-raised-button color="primary" [disabled]="f.invalid" *ngIf="!(isLoading$ | async); else spinner">
       Submit
     </button>
     <ng-template #spinner>

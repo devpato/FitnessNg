@@ -26,7 +26,8 @@ export class AuthService {
         //this.uiService.loadingStateChanged.next(true); THE IS THE WAY TO DO IT WITHOUT NGRX
         this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password).then(() => {
-            this.uiService.loadingStateChanged.next(false);
+            //this.uiService.loadingStateChanged.next(false);
+            this.store.dispatch(new UI.StopLoading());
         }).catch(error => {
             this.uiService.showSnackbar(error.message, null, 3000);
             //this.uiService.loadingStateChanged.next(false);
