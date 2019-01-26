@@ -6,6 +6,8 @@ export interface State {
     ui: fromUi.State;
 }
 
+
+//Group all my reducers
 export const appReducer: ActionReducerMap<State> = {
     ui: fromUi.uiReducer
 };

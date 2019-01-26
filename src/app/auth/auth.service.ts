@@ -7,6 +7,7 @@ import { TrainingService } from "../training/training.service";
 import { UIService } from "../shared/ui.service";
 import { Store } from "@ngrx/store";
 import * as fromRoot from '../reducers/app.reducer';
+import * as UI from '../reducers/ui.actions';
 
 @Injectable()
 export class AuthService {
@@ -23,24 +24,24 @@ export class AuthService {
 
     registerUser(authData: AuthData) {
         //this.uiService.loadingStateChanged.next(true); THE IS THE WAY TO DO IT WITHOUT NGRX
-        this.store.dispatch({ type: 'START_LOADING' });
+        this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth.createUserWithEmailAndPassword(authData.email, authData.password).then(() => {
             this.uiService.loadingStateChanged.next(false);
         }).catch(error => {
             this.uiService.showSnackbar(error.message, null, 3000);
             //this.uiService.loadingStateChanged.next(false);
-            this.store.dispatch({ type: 'STOP_LOADING' });
+            this.store.dispatch(new UI.StopLoading());
             this.isAuthenticated = false;
         })
     }
 
     login(authData: AuthData) {
-        this.store.dispatch({ type: 'START_LOADING' });
+        this.store.dispatch(new UI.StartLoading());
         this.afAuth.auth.signInWithEmailAndPassword(authData.email, authData.password).then(() => {
-            this.store.dispatch({ type: 'STOP_LOADING' });
+            this.store.dispatch(new UI.StopLoading());
         }).catch(error => {
             this.uiService.showSnackbar(error.message, null, 3000);
-            this.store.dispatch({ type: 'STOP_LOADING' });
+            this.store.dispatch(new UI.StopLoading());
             this.isAuthenticated = false;
         })
     }
